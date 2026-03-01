@@ -291,53 +291,38 @@ gestures {
     }
 }
 switch-events {
-    lid-close { spawn "bash" "-c" "pidof hyprlock || hyprlock "; } 
+    lid-close { spawn "dms" "ipc" "call" "lock" "lock"; }
 }
 // Make the wallpaper stationary, rather than moving with workspaces.
 layer-rule {
-    // This is for swaybg; change for other wallpaper tools.
-    // Find the right namespace by running niri msg layers.
     match namespace="^wallpaper$"
-    place-within-backdrop true
-}
-layer-rule {
     match namespace="^quickshell$"
-    place-within-backdrop true
-}
-layer-rule {
     match namespace="dms:blurwallpaper"
     place-within-backdrop true
 }
 layer-rule {
     match namespace="waybar"
     match at-startup=true  
-    // Properties that apply continuously.
     block-out-from "screencast"
     place-within-backdrop true
 }
-// Block out mako notifications from screencasts.
 layer-rule {
     match namespace="^notifications$"
-
     block-out-from "screencast"
 }
-// Add a shadow for rofi.
 layer-rule {
     match namespace="^rofi$"
-
     shadow {
         on
     }
 
 }
-// Block out sensitive components from screencasts
 layer-rule {
     match namespace="^dms:clipboard$"
 
     block-out-from "screencast"
 }
 
-// Match all DMS layers with a regex
 layer-rule {
     match namespace=r#"^dms:.*"#
 
@@ -359,44 +344,25 @@ window-rule {
     draw-border-with-background false
 }
 
-window-rule {
-    match is-active=false
-    opacity 0.9
-}
 
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
-// Open DMS windows as floating by default
+// Open these windows as floating by default
 window-rule {
     match app-id=r#"org.quickshell$"#
-    open-floating true
-}
-
-window-rule {
+    match app-id="gsr-ui"
     match app-id="pavucontrol"
-    open-floating true
-}
-
-window-rule {
     match app-id="scrcpy"
-    open-floating true
-    }
-
-window-rule {
     match app-id="tuned-gui"
-    open-floating true
-}
-
-window-rule {
+    match app-id="^com.github.hluk.copyq$"
     match title="Calculator"
-    open-floating true
-}
-
-window-rule {
     match title="Open Files"
+    // Firefox/Chrome picture-in-picture
+    match title="^Picture-in-Picture$"
+    match title="Picture in picture"
     open-floating true
 }
 // Add a shadow for fuzzel.
@@ -434,29 +400,16 @@ hotkey-overlay {
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
-// This option will also fix border/focus ring drawing behind some semitransparent windows.
-// After enabling or disabling this, you need to restart the apps for this to take effect.
 prefer-no-csd
 
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
+
 
 // Animation settings.
 // The wiki explains how to configure individual r:
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
-    // Uncomment to turn off all animations.
-    // off
-
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -473,26 +426,9 @@ window-rule {
     default-column-width {}
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match title="^Picture-in-Picture$"
-    open-floating true
-}
-window-rule {
-    match title="Picture in picture"
-    open-floating true
-}
-
 window-rule {
     match title="^btop$"
     default-column-width { proportion 0.6; }
-}
-window-rule {
-    match app-id="^com.github.hluk.copyq$"
-    open-floating true
 }
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
@@ -536,39 +472,37 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "uwsm-app" "kitty"; }
-    Mod+Return hotkey-overlay-title="Quake terminal" { spawn-sh "kitten quick-access-terminal"; }
+    Mod+Return hotkey-overlay-title="Quake terminal" { spawn "kitten" "quick-access-terminal"; }
 
     // Mod+Shift+T hotkey-overlay-title="Open a Terminal: ptyxis" { spawn "ptyxis"; }
     Mod+Space hotkey-overlay-title="Application Launcher" {spawn "dms" "ipc" "call" "spotlight" "toggle";}
-    Mod+D hotkey-overlay-title="Run a Application Launcher: fuzzel" { spawn "fuzzel" "--launch-prefix=uwsm-app --"; }
-    Mod+shift+D hotkey-overlay-title="Window switcher" { spawn-sh "niri-fuzzel-switcher"; }
+    // Mod+D hotkey-overlay-title="Run a Application Launcher: fuzzel" { spawn "fuzzel" "--launch-prefix=uwsm-app --"; }
+    // Mod+shift+D hotkey-overlay-title="Window switcher" { spawn-sh "niri-fuzzel-switcher"; }
 
     // Mod+semicolon hotkey-overlay-title="Open emoji picker" { spawn-sh "rofimoji --use-icons --hidden-descriptions -a clipboard --typer wtype --selector-args="-theme /etc/xdg/rofi/config.rasi""; } // use the flatpak com.github.hluk.copyq
     Mod+B hotkey-overlay-title="Open web browser" { spawn-sh "uwsm-app -- xdg-open https://"; }
     Mod+E hotkey-overlay-title="Open file manager: nautilus" { spawn "uwsm-app" "nautilus"; }
     Mod+Shift+C hotkey-overlay-title="Open code editor: code" { spawn "uwsm-app" "code"; } // may want to change it 
     // Mod+P hotkey-overlay-title="Color picker: " { spawn-sh "niri msg pick-color | grep -oP 'Hex: \\K#[0-9a-fA-F]+' | wl-copy"; }
-    Mod+P hotkey-overlay-title="Color picker: " { spawn-sh "c=$(niri msg pick-color | grep -oP 'Hex: \\K#[0-9a-fA-F]+') && echo \"$c\" | wl-copy && notify-send \"Color copied\" \"$c\""; }
+    Mod+P hotkey-overlay-title="Color picker: " { spawn-sh "dms color pick | wl-copy"; }
     Mod+Shift+M hotkey-overlay-title="Open spotify" { spawn "uwsm-app" "flatpak run com.spotify.Client";}
     Mod+alt+V hotkey-overlay-title="Open volume control: pavucontrol" { spawn "uwsm-app" "pavucontrol"; }
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle";}
     Mod+N hotkey-overlay-title="Notification Center" {spawn "dms" "ipc" "call" "notifications" "toggle";}
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" {spawn "dms" "ipc" "call" "dankdash" "wallpaper";}
     //hide waybar
-    Mod+Shift+W hotkey-overlay-title="Toggle waybar" { spawn-sh "killall -USR1 waybar"; }
+    // Mod+Shift+W hotkey-overlay-title="Toggle waybar" { spawn-sh "killall -USR1 waybar"; }
     //turn off notifcations
-    Mod+Shift+N hotkey-overlay-title="Toggle notifications" { spawn-sh "[ \"$(makoctl mode)\" = \"dnd\" ] && makoctl mode -r dnd || makoctl mode -s dnd"; }
-    Mod+alt+C hotkey-overlay-title="Open Clipboard" { spawn-sh  "uwsm-app nwg-clipman"; }
-    Mod+Shift+semicolon hotkey-overlay-title="Open Clipboard" { spawn-sh  "uwsm-app nwg-clipman"; }
-
+    Mod+Shift+N hotkey-overlay-title="Toggle notifications" { spawn "dms" "ipc" "call" "notepad" "toggle";}
 
     Mod+Alt+L hotkey-overlay-title="Lock Screen" {spawn "dms" "ipc" "call" "lock" "lock";}
     Super+escape hotkey-overlay-title="logout menu" { spawn "wlogout"; }
 
-    XF86Display { screenshot; }
+    XF86Display { spawn-sh "dms screenshot region"; }
+    Mod+Shift+S { spawn-sh "dms screenshot region"; }
+
     Mod+XF86Display { screenshot-window; } 
+    Mod+Shift+XF86Display { spawn-sh "dms screenshot full"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
