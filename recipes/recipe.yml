@@ -46,6 +46,8 @@ modules:
       exclude:
         - alacritty
         - waybar
+        - mako
+        
       packages:
         - adw-gtk3-theme
         - android-tools
@@ -96,6 +98,7 @@ modules:
         - mate-polkit
         - podman-compose
         - qt6ct
+        - qt6-qttools
         - qt6-qtwayland
         - ripgrep
         - sshfs
@@ -127,6 +130,7 @@ modules:
         - waybar
         - nvtop
         - htop
+        - mako
 
   - type: systemd
     system:
@@ -142,6 +146,7 @@ modules:
         - polkit-mate.service
       disabled:
         - waybar.service
+        - mako.service
 
   - type: os-release
     properties:
@@ -149,5 +154,6 @@ modules:
       NAME: Kanso Linux
       PRETTY_NAME: Kanso Linux
       ID_LIKE: fedora
+      DEFAULT_HOSTNAME: kanso-linux
 
   - type: signing
