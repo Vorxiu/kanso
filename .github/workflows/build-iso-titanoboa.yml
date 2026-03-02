@@ -48,7 +48,7 @@ jobs:
           (cd output && sha256sum ${{ github.event.repository.name }}-latest-titanoboa.iso | tee ${{ github.event.repository.name }}-latest-titanoboa.iso-CHECKSUM)
 
       - name: Upload ISO as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ github.event.repository.name }}-latest-iso
           path: output/*.iso
@@ -56,7 +56,7 @@ jobs:
           retention-days: 7
 
       - name: Upload checksum as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ github.event.repository.name }}-latest-checksum
           path: output/*-CHECKSUM

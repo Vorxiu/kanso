@@ -51,7 +51,7 @@ jobs:
     
 
       - name: Upload ISO as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ github.event.repository.name }}-latest-iso
           path: ./*.iso
@@ -60,7 +60,7 @@ jobs:
           retention-days: 30
 
       - name: Upload checksum as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ github.event.repository.name }}-latest-checksum
           path: ./*-CHECKSUM
