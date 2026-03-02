@@ -109,6 +109,7 @@ modules:
         - wget
         - wtype
         - wl-mirror
+        - wireguard-tools
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
         - xwayland-satellite
@@ -137,7 +138,6 @@ modules:
 
     user:
       enabled:
-        - dms
         - gnome-keyring-daemon.socket
         - polkit-mate.service
       disabled:
