@@ -38,11 +38,10 @@ modules:
         - ublue-os/packages
         - solopasha/hyprland
         - bieszczaders/kernel-cachyos-addons
-        - avengemedia/dms
+        # - avengemedia/dms
       nonfree: rpmfusion
 
     install:
-      skip-unavailable: true
       allow-erasing: true
       exclude:
         - alacritty
@@ -53,7 +52,6 @@ modules:
         - ananicy-cpp
         - cachyos-ananicy-rules
         - brightnessctl
-        - btop
         - bazaar
         - bluez
         - bluez-tools
@@ -65,13 +63,11 @@ modules:
         - fzf
         - firewall-config
         - fuse-overlayfs
-        - fuzzel
         - fprintd
         - fprintd-pam
         - fastfetch
         - git
         - gnome-keyring
-
         - gvfs
         - gvfs-mtp
         - gvfs-fuse
@@ -85,8 +81,8 @@ modules:
         - nautilus
         - blueman-nautilus
         - kde-connect-nautilus
-        - dms
-        - dms-greeter
+        - noctalia-shell
+        - gtkgreet
         - greetd-selinux
         - nautilus-python
         - sushi
@@ -111,6 +107,7 @@ modules:
         - uupd
         - uwsm
         - wget
+        - wtype
         - wl-mirror
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
