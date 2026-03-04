@@ -70,7 +70,6 @@ modules:
         - gvfs-mtp
         - gvfs-fuse
         - gvfs-archive
-        - gvfs-obexftp
         - gvfs-nfs
         - gvfs-smb
         - kitty
