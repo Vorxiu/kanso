@@ -74,14 +74,11 @@ modules:
         - gvfs-nfs
         - gvfs-smb
         - kitty
-        - man-db
         - nautilus
-        # - blueman-nautilus
-        - nautilus-sendto
+        - blueman-nautilus
         - noctalia-shell
         - lightdm-gtk
         - nautilus-python
-        - sushi
         - NetworkManager-openvpn
         - niri
         - papirus-icon-theme
