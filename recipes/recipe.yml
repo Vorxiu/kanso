@@ -129,9 +129,9 @@ modules:
       ID_LIKE: fedora
       DEFAULT_HOSTNAME: kanso-linux
   
-  - type: custom-kernel
-    kernel: cachyos
-    initramfs: true
+  # - type: custom-kernel
+  #   kernel: cachyos
+  #   initramfs: true
 
   - type: initramfs
   - type: signing
