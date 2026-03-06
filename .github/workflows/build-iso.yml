@@ -36,7 +36,7 @@ jobs:
 
       - name: Generate ISO
         run: |
-          sudo -E bluebuild -v generate-iso --iso-name ${{ github.event.repository.name }}-latest.iso image ghcr.io/vorxiu/ublue-niri:latest
+          sudo -E bluebuild -v generate-iso --web-ui --iso-name ${{ github.event.repository.name }}-latest.iso image ghcr.io/vorxiu/ublue-niri:latest
       # - name: Build ISO
       #   id: build
       #   uses: jasonn3/build-container-installer@main
