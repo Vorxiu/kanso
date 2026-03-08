@@ -11,20 +11,33 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone --depth=1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-export AUTO_NOTIFY_THRESHOLD=30
+export AUTO_NOTIFY_THRESHOLD=60
 export AUTO_NOTIFY_ENABLE_SSH=1
 
+# Load completions
+autoload -Uz compinit && compinit
+autoload -Uz zmv
+autoload -Uz add-zsh-hook
 
 # Add in Powerlevel10k
  zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-
-zinit light zsh-users/zsh-autosuggestions
-
 zinit light Aloxaf/fzf-tab
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+    
+# zinit light zsh-users/zsh-syntax-highlighting
+# zinit light zsh-users/zsh-completions
+
+# zinit light zsh-users/zsh-autosuggestions
+
 zinit light MichaelAquilina/zsh-auto-notify
 zinit light aubreypwd/zsh-plugin-require
 
@@ -37,9 +50,10 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::qrcode
 
-# Load completions
-autoload -Uz compinit && compinit
-autoload -Uz zmv
+ls_after_cd() {
+  eza --icons=auto --hyperlink
+}
+add-zsh-hook chpwd ls_after_cd
 
 zinit cdreplay -q
 
@@ -65,8 +79,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt autocd
-setopt magicequalsubs
-setopt correct
+# setopt correct
 setopt interactivecomments
 setopt glob_dots
 setopt no_beep
@@ -79,31 +92,42 @@ setopt hash_list_all
 setopt completeinword
 setopt noshwordsplit
 
-
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
 zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
 
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-flags "--preview-window=wrap" "${FZF_TAB_DEFAULT_FZF_FLAGS[@]}"
+zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-preview "[[ -n \${(P)word} ]] && echo \${(P)word} || echo \<unset\>"
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --hyperlink --icons=auto $realpath'
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
+if [ -f "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER" ]; then
+  source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER";
+fi
 
 # Aliases
-alias ls='ls --color'
+alias ls='eza --icons=auto --hyperlink'
 alias vim='nvim'
 alias c='clear'
 alias icat="kitten icat"
-
-#alias cd='z'
+alias cat="bat"
 
 # Shell integrations
 eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd  cd)"
+
 
 require "zoxide" "brew install zoxide" "brew"
+require "eza" "brew install eza" "brew"
 require "fzf" "brew install fzf" "brew"
-require "tealdeer" "brew install tealdeer" "brew"
 require "bat" "brew install bat" "brew"
 require "nvim" "brew install neovim" "brew"
+require "bbrew" "brew install Valkyrie00/homebrew-bbrew/bbrew" "brew"
