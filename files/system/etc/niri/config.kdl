@@ -385,7 +385,9 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "uwsm-app" "kitty"; }
     Mod+Return hotkey-overlay-title="Quake terminal" { spawn "kitten" "quick-access-terminal"; }
 
-    Mod+Shift+T hotkey-overlay-title="Open distrobox container" { spawn-sh "kitty -e distrobox enter arch-distrobox"; }
+    Mod+Shift+T hotkey-overlay-title="Open distrobox container" { spawn-sh "kitty -e distrobox enter $(distrobox list | awk -F'|' 'NR>1 {print $2}' | fuzzel -d)"; }
+    Mod+Shift+Return hotkey-overlay-title="Open distrobox container" { spawn-sh "kitty -e distrobox enter $(distrobox list | awk -F'|' 'NR>1 {print $2}' | fuzzel -d)"; }
+
     // Core Noctalia binds
     Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Mod+S { spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"; }
