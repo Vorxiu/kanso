@@ -31,7 +31,7 @@ modules:
       copr:
         - ublue-os/packages
         - bieszczaders/kernel-cachyos-addons
-        - solopasha/hyprland/uwsm
+        - solopasha/hyprland
       nonfree: rpmfusion
     install:
       allow-erasing: true
