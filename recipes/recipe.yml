@@ -146,6 +146,8 @@ modules:
   - type: custom-kernel
     kernel: cachyos
     initramfs: true
+    source: local
+    
 
   - type: initramfs
   - type: signing
