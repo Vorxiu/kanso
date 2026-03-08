@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: ublue-niri
 base-image: ghcr.io/ublue-os/base-main
-description: Atomic distro with the Niri and noctalia shell
+description: Atomic distro with the Niri and noctalia shell using bluebuild
 image-version: latest 
 
 modules:
@@ -24,6 +24,10 @@ modules:
   - type: gschema-overrides
     include:
       - zz-ublue-niri.gschema.override
+
+  - type: justfiles
+    validate: true
+    install: true
 
   - type: dnf
     repos:
