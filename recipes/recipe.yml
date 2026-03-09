@@ -52,7 +52,6 @@ modules:
       packages:
         - adw-gtk3-theme
         - bazaar
-        - kernel-cachyos-devel-matched
         - btop
         - bat
         - bluez-tools
