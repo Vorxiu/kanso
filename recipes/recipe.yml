@@ -10,10 +10,6 @@ modules:
     files:
       - source: system
         destination: / 
-  
-  - type: script
-    scripts:
-      - post_build.sh
 
   - type: brew
     nofile-limits: true
@@ -37,11 +33,6 @@ modules:
     repository: "https://github.com/Vorxiu/niri-dots" 
     all-users: true
     file-conflict-policy: skip
-
-  - type: custom-kernel
-    kernel: cachyos
-    initramfs: true
-    source: local
 
   - type: dnf
     repos:
@@ -100,6 +91,9 @@ modules:
         - qt6ct
         - qt6-qttools
         - qt6-qtwayland
+        - qt5-qtgraphicaleffects
+        - qt5-qtquickcontrols2 
+        - qt5-qtsvg
         - tldr
         - tuned-ppd
         - toolbox
@@ -136,6 +130,10 @@ modules:
         - nvtop
         - htop
         - mako
+  
+  - type: script
+    scripts:
+      - misc.sh
 
   - type: systemd
     system:
@@ -151,6 +149,11 @@ modules:
       disabled:
         - waybar.service
         - mako.service
+  
+  - type: custom-kernel
+    kernel: cachyos
+    initramfs: true
+    source: local
 
   - type: os-release
     properties:
