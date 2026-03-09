@@ -5,14 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone --depth=1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
 export AUTO_NOTIFY_THRESHOLD=60
-export AUTO_NOTIFY_ENABLE_SSH=1
+export AUTO_NOTIFY_ENABLE_SSH=0
+export FZF_DEFAULT_OPTS="--style full --preview 'fzf-preview({}) --bind 'focus:transform-header:file --brief {}'"
+export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:50 {}'"
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -32,10 +33,7 @@ zinit wait lucid for \
     zsh-users/zsh-completions \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
-    
-# zinit light zsh-users/zsh-syntax-highlighting
-# zinit light zsh-users/zsh-completions
-# zinit light zsh-users/zsh-autosuggestions
+
 
 if [[ -z $SSH_CONNECTION && -z $CONTAINER_ID ]]; then
   zinit light MichaelAquilina/zsh-auto-notify
@@ -44,6 +42,9 @@ fi
 
 zinit load redxtech/zsh-kitty
 
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
@@ -51,7 +52,11 @@ zinit snippet OMZP::command-not-found
 zinit snippet OMZP::qrcode
 
 ls_after_cd() {
-  eza --icons=auto --hyperlink
+  if (( $+commands[eza] )); then
+    eza --icons=auto --hyperlink --group-directories-first
+  else
+    ls --color --group-directories-first
+  fi
 }
 add-zsh-hook chpwd ls_after_cd
 
@@ -80,13 +85,12 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt autocd
 setopt interactivecomments
-setopt glob_dots
+setopt globdots
 setopt no_beep
 setopt noflowcontrol
 setopt prompt_subst
 setopt longlistjobs
 setopt nonomatch
-setopt notify
 setopt hash_list_all
 setopt completeinword
 setopt noshwordsplit
@@ -102,32 +106,38 @@ zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-flags "--preview-window=wrap" "${FZF_TAB_DEFAULT_FZF_FLAGS[@]}"
 zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-preview "[[ -n \${(P)word} ]] && echo \${(P)word} || echo \<unset\>"
+zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
-if [ -f "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER" ]; then
-  source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER";
-fi
 
 # Aliases
 alias l='ls -l'
-alias vim='nvim || vim'
+alias la='ls -a'
+alias vim='nvim'
 alias icat="kitten icat"
 alias cat="bat"
 alias ls='ls --color --group-directories-first'
+alias cpv='rsync -ah --info=progress2'
+
 
 if (( $+commands[eza] )); then
-  alias ls='eza --icons=auto --hyperlink -l group-directories-first'
-  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=auto --hyperlink --icons=auto $realpath'
+  alias ls='eza --icons=auto --hyperlink --smart-group --group-directories-first'
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=never --hyperlink --group-directories-first --icons=auto $realpath'
 fi
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh --cmd  cd)"
 
 if (( $+commands[brew] )); then
+
+  HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
+  if [ -f "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER" ]; then
+    source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER";
+  fi
   require "zoxide" "brew install zoxide" "brew"
   require "eza" "brew install eza" "brew"
   require "fzf" "brew install fzf" "brew"
