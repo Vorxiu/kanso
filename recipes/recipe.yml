@@ -78,7 +78,11 @@ modules:
         - nautilus-open-any-terminal
         - noctalia-shell
         - blueman-nautilus
-        - sddm
+        # - sddm
+        - cage
+        - greetd
+        - gtkgreet
+        - greetd-selinux
         - nautilus-python
         - NetworkManager-openvpn
         - niri
@@ -90,9 +94,6 @@ modules:
         - qt6ct
         - qt6-qttools
         - qt6-qtwayland
-        - qt5-qtgraphicaleffects
-        - qt5-qtquickcontrols2 
-        - qt5-qtsvg
         - tldr
         - tuned-ppd
         - toolbox
@@ -130,15 +131,11 @@ modules:
         - htop
         - mako
   
-  - type: script
-    scripts:
-      - misc.sh
-
   - type: systemd
     system:
       enabled:
         - podman.socket
-        - sddm.service
+        - greetd.service
         - uupd.timer
 
     user:
@@ -156,11 +153,11 @@ modules:
 
   - type: os-release
     properties:
-      ID: Kanso
-      NAME: Kanso Linux
-      PRETTY_NAME: Kanso Linux
+      ID: Kanzo
+      NAME: Kanzo Linux
+      PRETTY_NAME: Kanzo Linux
       ID_LIKE: fedora
-      DEFAULT_HOSTNAME: kanso-linux
+      DEFAULT_HOSTNAME: kanzo-linux
     
   - type: yafti
     custom-flatpaks:
