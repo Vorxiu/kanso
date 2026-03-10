@@ -1,38 +1,27 @@
 # ublue-niri &nbsp; [![bluebuild build badge](https://github.com/vorxiu/ublue-niri/actions/workflows/build.yml/badge.svg)](https://github.com/vorxiu/ublue-niri/actions/workflows/build.yml)
 
-A base niri image with noctalia-shell
+A base niri image with noctalia-shell for an OOTB experience
 Full package list [here](https://github.com/Vorxiu/ublue-niri/blob/main/recipes/recipe.yml)
 
+- CachyOS kernel
+- Minimal dotfiles for niri,noctalia,zsh,kitty
+- Bazaar included
+- ujust recipes run `ujust`
 
 ## Installation
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+- On any atomic distro with bootc run
+```bash
+bootc switch ghcr.io/vorxiu/ublue-niri:latest
+systemctl reboot
+```
+- Enroll the MOK key into MOK manager with password `kansolinux`
 
-To rebase an existing atomic Fedora installation to the latest build:
-
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/vorxiu/ublue-niri:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/vorxiu/ublue-niri:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
-
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+The `latest` tag will automatically point to the latest build.
 
 ## ISO
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+Currently you can download the ISO from latest [github artifacts](https://github.com/Vorxiu/ublue-niri/actions/runs/22748100570).
 
 ## Verification
 
