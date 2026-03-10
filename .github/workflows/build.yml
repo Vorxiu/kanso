@@ -9,7 +9,6 @@ on:
       - "**.md"
       - ".github/workflows/build-iso.yml"
       - ".github/workflows/build-iso-titanoboa.yml"
-
   pull_request:
   workflow_dispatch: # allow manually triggering builds
 concurrency:
@@ -17,6 +16,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 jobs:
+
   bluebuild:
     name: Build Custom Image
     runs-on: ubuntu-latest
@@ -30,6 +30,17 @@ jobs:
         recipe:
           - recipe.yml
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Write MOK signing key
+        shell: bash
+        env:
+          MOK_KEY: ${{ secrets.MOK_KEY }}
+        run: |
+          printf '%s\n' "$MOK_KEY" > MOK.key
+          chmod 600 MOK.key
+
       - name: Build Custom Image
         uses: blue-build/github-action@v1.11
         with:
