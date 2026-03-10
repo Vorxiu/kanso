@@ -21,6 +21,7 @@ modules:
       nerd-fonts:
         - JetBrainsMono
 
+
   - type: gschema-overrides
     include:
       - zz-ublue-niri.gschema.override
@@ -111,6 +112,7 @@ modules:
         - scx-scheds 
         - scx-tools
         - scx-manager
+        - sbsigntools
 
     replace:
       - from-repo: copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons
