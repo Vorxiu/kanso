@@ -37,9 +37,12 @@ jobs:
         shell: bash
         env:
           MOK_KEY: ${{ secrets.MOK_KEY }}
+          MOK_CERT: ${{ secrets.MOK_PEM }}
         run: |
           printf '%s\n' "$MOK_KEY" > MOK.key
           chmod 600 MOK.key
+          echo $MOK_PEM
+
 
       - name: Build Custom Image
         uses: blue-build/github-action@v1.11
