@@ -79,12 +79,11 @@ modules:
         - ublue-os/packages
       nonfree: rpmfusion
     install:
-      # allow-erasing: true
+      allow-erasing: true
       exclude:
         - alacritty
         - waybar
         - mako
-        - breeze-icon-theme
       packages:
         - adw-gtk3-theme
         - bazaar
