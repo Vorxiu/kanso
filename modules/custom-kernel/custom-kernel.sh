@@ -233,23 +233,23 @@ restore_akmodsbuild() {
 # FAIL_LOGS=( ${FAIL_LOG_GLOB} )
 # shopt -u nullglob
 
-if (( ${#FAIL_LOGS[@]} )); then
-    error "v4l2loopback akmod build failed"
-    for f in "${FAIL_LOGS[@]}"; do
-        cat "${f}" || log "Failed to read ${f}"
-        log "--------------"
-    done
-    log "Restoring akmodsbuild script."
-    restore_akmodsbuild
-    exit 1
-fi
+# if (( ${#FAIL_LOGS[@]} )); then
+#     error "v4l2loopback akmod build failed"
+#     for f in "${FAIL_LOGS[@]}"; do
+#         cat "${f}" || log "Failed to read ${f}"
+#         log "--------------"
+#     done
+#     log "Restoring akmodsbuild script."
+#     restore_akmodsbuild
+#     exit 1
+# fi
 
-log "Cleaning RPM Fusion Free repo."
-dnf -y remove rpmfusion-free-release
-rm -f /etc/yum.repos.d/rpmfusion-free*.repo
+# log "Cleaning RPM Fusion Free repo."
+# dnf -y remove rpmfusion-free-release
+# rm -f /etc/yum.repos.d/rpmfusion-free*.repo
 
-log "Restoring akmodsbuild script."
-restore_akmodsbuild
+# log "Restoring akmodsbuild script."
+# restore_akmodsbuild
 
 if [[ ${NVIDIA} == true ]]; then
     log "Enabling Nvidia repositories."
