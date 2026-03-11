@@ -84,6 +84,9 @@ modules:
         - alacritty
         - waybar
         - mako
+        - swaybg
+        - swaylock
+        - swayidle
       packages:
         - adw-gtk3-theme
         - bazaar
@@ -118,7 +121,7 @@ modules:
         - nautilus-python
         - NetworkManager-openvpn
         - niri
-        # - papirus-icon-theme
+        - papirus-icon-theme
         - nwg-look
         - polkit
         - mate-polkit
@@ -149,10 +152,7 @@ modules:
         - waybar
         - nvtop
         - htop
-        - mako
-        - swaybg
-        - swaylock
-        - swayidle
+
         
   - type: systemd
     system:
