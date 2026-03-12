@@ -165,7 +165,7 @@ screens:
           packages:
             - Install Default Configs: ujust install-default-configs
         Secure Boot:
-          description: Enroll the custom Secure Boot key for your system. Required to boot with Secure Boot enabled when using a custom kernel or signed modules.
+          description: Enroll Secure Boot key to make secure boot work.
           default: false
           packages:
             - Enroll Secure Boot Key: kitty -e ujust enroll-secure-boot-key && notify-send "Secure Boot" "key enrolled! Password kanso — Reboot to enroll key into MOK manager."
