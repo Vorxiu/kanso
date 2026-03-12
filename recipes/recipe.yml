@@ -44,7 +44,6 @@ modules:
           type: file
           destination: /tmp/certs/MOK.key
 
-
   - type: brew
     nofile-limits: true
     brew-analytics: false
@@ -114,7 +113,6 @@ modules:
         - nautilus
         - noctalia-shell
         - blueman-nautilus
-        - cage
         - greetd
         - gtkgreet
         - greetd-selinux
@@ -126,10 +124,11 @@ modules:
         - polkit
         - mate-polkit
         - podman-compose
+        - qt5-qtwayland
         - qt6ct
-        - qt6-qttools
         - qt6-qtwayland
         - tldr
+        - tailscale
         - tuned-ppd
         - ublue-os-just
         - uupd
