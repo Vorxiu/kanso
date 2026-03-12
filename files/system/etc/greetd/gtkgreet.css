@@ -4,7 +4,7 @@ window {
   background-position: center;
 }
 box#body {
-  background-color: rgba(50, 50, 50, 0.5);
+  background-color: rgba(19, 19, 19, 0.75);
   border-radius: 10px;
   padding: 50px;
 }
