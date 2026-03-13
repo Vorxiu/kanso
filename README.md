@@ -32,13 +32,13 @@ These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](ht
 cosign verify --key cosign.pub ghcr.io/vorxiu/ublue-niri
 ```
 
-### FIX VS CODE FONTS AND ICONS
+#### FIX VS CODE FONTS AND ICONS
 
 ```bash
 ujust fix-fonts
 ```
 
-### Manually import secure boot certificate into mok manager
+#### Manually import secure boot certificate into mok manager
 
 ```bash
 ujust enroll-secure-boot-key  
