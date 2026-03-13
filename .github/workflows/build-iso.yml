@@ -17,38 +17,16 @@ jobs:
       contents: write
       packages: read
 
-    # strategy:
-    #   fail-fast: false
-
-      # matrix:
-      #   recipe:
-      #     - recipe.yml
-
     steps:
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v9
-
-      - name: Checkout repository
-        uses: actions/checkout@v6
 
       - name: Install bluebuild cli
         run: bash <(curl -s https://raw.githubusercontent.com/blue-build/cli/main/install.sh)
 
       - name: Generate ISO
         run: |
-          sudo -E bluebuild -v generate-iso --web-ui --iso-name ${{ github.event.repository.name }}-latest.iso image ghcr.io/vorxiu/ublue-niri:latest
-      # - name: Build ISO
-      #   id: build
-      #   uses: jasonn3/build-container-installer@main
-      #   with:
-      #     image_name: ublue-niri
-      #     image_repo: ghcr.io/vorxiu
-      #     image_tag: latest
-      #     version: 43
-      #     # variant: silverblue
-      #     iso_name: ${{ github.event.repository.name }}-latest.iso
-      #     web_ui: true
-    
+          sudo bluebuild generate-iso --iso-name ${{ github.event.repository.name }}-latest.iso image ghcr.io/vorxiu/ublue-niri:latest
 
       - name: Upload ISO as artifact
         uses: actions/upload-artifact@v7
@@ -56,8 +34,9 @@ jobs:
           name: ${{ github.event.repository.name }}-latest-iso
           path: ./*.iso
           if-no-files-found: error
-          compression-level: 9
+          compression-level: 0
           retention-days: 30
+          archive: false 
 
       - name: Upload checksum as artifact
         uses: actions/upload-artifact@v7
@@ -65,4 +44,6 @@ jobs:
           name: ${{ github.event.repository.name }}-latest-checksum
           path: ./*-CHECKSUM
           if-no-files-found: error
+          compression-level: 0
           retention-days: 30
+          archive: false 
