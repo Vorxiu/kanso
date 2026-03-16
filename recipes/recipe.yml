@@ -49,10 +49,6 @@ modules:
     brew-analytics: false
     # direct-pull: true
 
-  - type: script
-    scripts:
-      - misc.sh
-
   - type: fonts
     fonts:
       nerd-fonts:
@@ -174,7 +170,11 @@ modules:
       PRETTY_NAME: Kanso Linux
       ID_LIKE: fedora
       DEFAULT_HOSTNAME: kanso-linux
-    
+
+  - type: script
+    scripts:
+      - misc.sh
+ 
   - type: yafti
 
   - type: signing
