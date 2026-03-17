@@ -136,7 +136,7 @@ modules:
         - xwayland-satellite
         - zoxide
         - zsh
-        - zstd
+        - xdg-user-dirs
     remove:
       auto-remove: true
       packages:
@@ -158,6 +158,7 @@ modules:
     user:
       enabled:
         - gnome-keyring-daemon.socket
+        - xdg-user-dirs-update.service
         - polkit-mate.service
       disabled:
         - waybar.service
