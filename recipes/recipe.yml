@@ -114,6 +114,7 @@ modules:
         - greetd-selinux
         - nautilus-python
         - NetworkManager-openvpn
+        - nm-connection-editor
         - niri
         - papirus-icon-theme
         - nwg-look
@@ -158,7 +159,7 @@ modules:
     user:
       enabled:
         - gnome-keyring-daemon.socket
-        - xdg-user-dirs-update.service
+        - xdg-user-dirs.service
         - polkit-mate.service
       disabled:
         - waybar.service
