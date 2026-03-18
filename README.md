@@ -20,7 +20,7 @@ systemctl reboot
 
 The `latest` tag will automatically point to the latest build.
 
-## ISO
+## ISO  &nbsp; [![build-iso](https://github.com/Vorxiu/ublue-niri/actions/workflows/build-iso.yml/badge.svg)](https://github.com/Vorxiu/ublue-niri/actions/workflows/build-iso.yml)
 
 Currently you can download the ISO from the latest [GitHub Actions workflow run](https://github.com/Vorxiu/ublue-niri/actions/workflows/build-iso.yml).
 
