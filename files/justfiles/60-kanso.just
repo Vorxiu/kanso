@@ -73,4 +73,3 @@ enable-auto-login:
         printf '\n[initial_session]\ncommand = "niri-session"\nuser = "%s"\n' "$CURRENT_USER" | pkexec tee -a /etc/greetd/config.toml
         echo "Auto login enabled for user $CURRENT_USER. Reboot to apply changes."
     fi
-    
