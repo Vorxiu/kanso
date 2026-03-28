@@ -5,14 +5,12 @@ set -euo pipefail
 mkdir -p /nix
 
 rm /usr/share/applications/btop.desktop
-sudo dnf install scdoc -y 
+
+sudo dnf install scdoc gzip -y 
 # install app2unit
 git clone https://github.com/Vladimir-csp/app2unit.git /tmp/app2unit
 cd /tmp/app2unit
-make
 sudo make install
-cd ..
-rm -rf /tmp/app2unit
 
 # install niri-settings
 git clone https://github.com/stefonarch/niri-settings.git /tmp/niri-settings
@@ -37,4 +35,5 @@ sudo cp -v niri-settings.svg /usr/share/icons/hicolor/scalable/apps/niri-setting
 
 echo ""
 echo "Installation finished."
+# sudo dnf remove scdoxc -y
 rm -rf /tmp/niri-settings
