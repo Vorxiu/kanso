@@ -4,9 +4,8 @@ A base niri image with noctalia-shell for an OOTB experience
 Full package list [here](https://github.com/Vorxiu/ublue-niri/blob/main/recipes/recipe.yml)
 
 - CachyOS kernel
-- Minimal dotfiles for niri,noctalia,zsh,kitty
-- Bazaar included
-- ujust recipes run `ujust`
+- dotfiles for niri,noctalia,zsh,kitty
+- some nice to haves(Bazaar,niri-settings)
 
 ## Installation
 
