@@ -118,10 +118,10 @@ modules:
         - nm-connection-editor
         - niri
         - python3-pyqt6
-        - papirus-icon-theme
+        # - papirus-icon-theme
         - nwg-look
+        - mpv
         - polkit
-        - mate-polkit
         - podman-compose
         - qt5-qtwayland
         - qt6ct
@@ -139,7 +139,7 @@ modules:
         - xwayland-satellite
         - zoxide
         - zsh
-        - xdg-user-dirs
+        - xdg-user-dirs # creates default dirs in home like Documents, Downloads, etc.
         
     remove:
       auto-remove: true
@@ -163,7 +163,6 @@ modules:
       enabled:
         - gnome-keyring-daemon.socket
         - xdg-user-dirs.service
-        - polkit-mate.service
       disabled:
         - waybar.service
         - mako.service
