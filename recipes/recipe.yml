@@ -118,7 +118,7 @@ modules:
         - nm-connection-editor
         - niri
         - python3-pyqt6
-        # - papirus-icon-theme
+        - papirus-icon-theme
         - nwg-look
         - mpv
         - polkit
@@ -139,8 +139,7 @@ modules:
         - xwayland-satellite
         - zoxide
         - zsh
-        - xdg-user-dirs # creates default dirs in home like Documents, Downloads, etc.
-        
+        - xdg-user-dirs # creates default dirs in home like Document Downloads, etc.
     remove:
       auto-remove: true
       packages:
@@ -150,7 +149,6 @@ modules:
         - breeze-icon-theme
         - waybar
         - nvtop
-        - htop
 
         
   - type: systemd
