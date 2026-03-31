@@ -38,15 +38,15 @@ echo ""
 echo "Installation finished."
 rm -rf /tmp/niri-settings
 
-# nautilus extensions
-echo "Installing Nautilus Code extension..."
-sudo dnf install meson ninja -y
-git clone --depth=1 https://github.com/realmazharhussain/nautilus-code.git /tmp/nautilus-code
-cd /tmp/nautilus-code
-meson setup build
-meson install -C build
+# # nautilus extensions
+# echo "Installing Nautilus Code extension..."
+# sudo dnf install meson ninja -y
+# git clone --depth=1 https://github.com/realmazharhussain/nautilus-code.git /tmp/nautilus-code
+# cd /tmp/nautilus-code
+# meson setup build
+# meson install -C build
 
-rm -rf /tmp/nautilus-code
+# rm -rf /tmp/nautilus-code
 
 sudo dnf remove scdoc meson ninja -y
 
