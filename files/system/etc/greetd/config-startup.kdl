@@ -59,4 +59,4 @@ gestures {
         off
     }
 }
-spawn-at-startup "sh" "-c" "GTK_THEME=adw-gtk3-dark; regreet; niri msg action quit --skip-confirmation"
+spawn-at-startup "sh" "-c" "GTK_THEME=adw-gtk3-dark; gtkgreet; niri msg action quit --skip-confirmation"
