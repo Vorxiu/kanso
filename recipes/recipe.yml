@@ -3,13 +3,13 @@
 name: ublue-niri
 base-image: ghcr.io/ublue-os/base-main
 description: Atomic distro with the Niri and noctalia shell using bluebuild
-image-version: latest 
+image-version: latest
 
 modules:
   - type: files
     files:
       - source: system
-        destination: / 
+        destination: /
 
   - type: dnf
     repos:
@@ -27,7 +27,7 @@ modules:
         packages:
           - old: zram-generator-defaults
             new: cachyos-settings
-  
+
   - type: custom-kernel
     kernel: cachyos-lto
     initramfs: true
@@ -63,7 +63,7 @@ modules:
     install: true
 
   - type: chezmoi
-    repository: "https://github.com/Vorxiu/niri-dots" 
+    repository: "https://github.com/Vorxiu/niri-dots"
     all-users: true
     file-conflict-policy: skip
 
@@ -133,6 +133,7 @@ modules:
         - uupd
         - wtype
         - wl-mirror
+        - wlr-randr
         - wireguard-tools
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
@@ -150,7 +151,6 @@ modules:
         - waybar
         - nvtop
 
-        
   - type: systemd
     system:
       enabled:
@@ -177,7 +177,7 @@ modules:
   - type: script
     scripts:
       - misc.sh
- 
+
   - type: yafti
 
   - type: signing
