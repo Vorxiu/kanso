@@ -38,15 +38,23 @@ echo ""
 echo "Installation finished."
 rm -rf /tmp/niri-settings
 
+
 # # nautilus extensions
 # echo "Installing Nautilus Code extension..."
 # sudo dnf install meson ninja -y
-# git clone --depth=1 https://github.com/realmazharhussain/nautilus-code.git /tmp/nautilus-code
+# git clone https://github.com/realmazharhussain/nautilus-code.git /tmp/nautilus-code
 # cd /tmp/nautilus-code
 # meson setup build
 # meson install -C build
 
 # rm -rf /tmp/nautilus-code
 
-sudo dnf remove scdoc meson ninja -y
+sudo dnf install go -y
+git clone https://github.com/probeldev/niri-float-sticky.git /tmp/niri-float-sticky
+cd /tmp/niri-float-sticky
+go build -o niri-float-sticky
+echo "Installing niri-float-sticky..."
+sudo mv niri-float-sticky /usr/bin/niri-float-sticky
+rm -rf /tmp/niri-float-sticky
 
+sudo dnf remove scdoc go -y
