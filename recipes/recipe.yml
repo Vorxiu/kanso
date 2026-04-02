@@ -74,6 +74,7 @@ modules:
         - ublue-os/packages
         - celestelove/app2unit
         - washkinazy/wayland-wm-extras
+        - vorxiu/kanso-packages
       nonfree: rpmfusion
     install:
       allow-erasing: true
@@ -114,7 +115,6 @@ modules:
         - noctalia-shell
         - blueman-nautilus
         - greetd
-        - gtkgreet
         - greetd-selinux
         - nautilus-python
         - NetworkManager-openvpn
@@ -144,6 +144,8 @@ modules:
         - xwayland-satellite
         - zoxide
         - zsh
+        - niri-float-sticky
+        - nautilus-code
         - xdg-user-dirs # creates default dirs in home like Document Downloads, etc.
     remove:
       auto-remove: true
