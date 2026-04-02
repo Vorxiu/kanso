@@ -30,7 +30,7 @@ jobs:
           echo "RELEASE_DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
       - name: Generate ISO
         run: |
-          sudo bluebuild generate-iso --iso-name kanso.iso image ghcr.io/vorxiu/ublue-niri:latest
+          sudo bluebuild generate-iso --iso-name kanso.iso image ghcr.io/vorxiu/kanso:latest
 
       - name: Upload ISO as artifact
         uses: actions/upload-artifact@v7
