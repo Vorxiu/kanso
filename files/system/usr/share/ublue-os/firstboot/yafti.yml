@@ -114,8 +114,6 @@ screens:
           description: Developer tools
           default: false
           packages:
-            - VSCodium: com.vscodium.codium
-            - Zed(Code Editer): dev.zed.Zed
             - GitHub Desktop: io.github.shiftey.Desktop
             - GNOME Boxes (Virtual Machines): org.gnome.Boxes
 
@@ -126,6 +124,11 @@ screens:
       show_terminal: true
       package_manager: yafti.plugin.run
       groups:
+        VS codium:
+          description: Install VSCodium via brew from ublue tap.
+          default: false
+          packages:
+            - Install VSCodium: flatpak install --system --noninteractive dev.vscodium.codium && notify-send "VSCodium" "installed"
         Visual Studio Code:
           description: Install VS Code via brew from ublue tap.
           default: false
@@ -136,6 +139,11 @@ screens:
           default: false
           packages:
             - Install JetBrains Toolbox: kitty -e ujust install-jetbrains-toolbox
+        Zed Editor:
+          description: Install Zed, a lightning fast code editor written in rust.
+          default: false
+          packages:
+            - Install Zed Editor: nohup $(flatpak install --noninteractive --system dev.zed.Zed && notify-send "Zed Editor" "installed") &
         Neovim:
           description: Install neovim with lazyVim's starter config.
           default: false
@@ -146,9 +154,9 @@ screens:
           description: Create a Distrobox container for development. Choose from Arch, Fedora, or Ubuntu.
           default: false
           packages:
-            - Install Arch Distrobox:  distrobox create --image ghcr.io/ublue-os/arch-toolbox:latest --name Arch-Distrobox --additional-packages "xdg-utils"
-            - Install Fedora Distrobox: distrobox create --image ghcr.io/ublue-os/fedora-toolbox:latest --name Fedora-Distrobox --additional-packages "xdg-utils"
-            - Install Ubuntu Distrobox: distrobox create --image ghcr.io/ublue-os/ubuntu-toolbox:latest --name Ubuntu-Distrobox --additional-packages "xdg-utils"
+            - Install Arch Distrobox:  distrobox create --image ghcr.io/ublue-os/arch-toolbox:latest --name Arch-Distrobox --additional-packages "xdg-utils" "fzf" "zoxide"
+            - Install Fedora Distrobox: distrobox create --image ghcr.io/ublue-os/fedora-toolbox:latest --name Fedora-Distrobox --additional-packages "xdg-utils" "fzf" "zoxide"
+            - Install Ubuntu Distrobox: distrobox create --image ghcr.io/ublue-os/ubuntu-toolbox:latest --name Ubuntu-Distrobox --additional-packages "xdg-utils" "fzf" "zoxide"
 
   additional-setup:
     source: yafti.screen.package
