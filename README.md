@@ -11,7 +11,7 @@ dot files for the repo are [here](https://github.com/Vorxiu/niri-dots).
 
 - Disable secure boot and on any atomic distro with bootc run
 ```bash
-bootc switch ghcr.io/vorxiu/ublue-niri:latest
+bootc switch ghcr.io/vorxiu/kanso:latest
 systemctl reboot
 ```
 - Enroll the MOK key into MOK manager with password `universalblue`
@@ -19,16 +19,16 @@ systemctl reboot
 
 The `latest` tag will automatically point to the latest build.
 
-## ISO &nbsp; [![build-iso](https://github.com/Vorxiu/ublue-niri/actions/workflows/build-iso.yml/badge.svg)](https://github.com/Vorxiu/ublue-niri/actions/workflows/build-iso.yml)
+## ISO &nbsp; [![build-iso](https://github.com/Vorxiu/kanso/actions/workflows/build-iso.yml/badge.svg)](https://github.com/Vorxiu/kanso/actions/workflows/build-iso.yml)
 
-Currently you can download the ISO from the latest [GitHub Actions workflow run](https://github.com/Vorxiu/ublue-niri/actions/workflows/build-iso.yml).
+Currently you can download the ISO from the latest [GitHub Actions workflow run](https://github.com/Vorxiu/kanso/actions/workflows/build-iso.yml).
 
 ## Verification
 
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/vorxiu/ublue-niri
+cosign verify --key cosign.pub ghcr.io/Vorxiu/kanso
 ```
 
 #### FIX VS CODE FONTS AND ICONS
