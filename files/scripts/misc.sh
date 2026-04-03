@@ -7,6 +7,10 @@ mkdir -p /nix
 rm /usr/share/applications/btop.desktop
 rm /usr/share/applications/htop.desktop
 
+# remove repos from the image
+rm /etc/yum.repos.d/docker-ce.repo
+rm /etc/yum.repos.d/niri-git-blur.repo
+
 # install niri-settings
 git clone https://github.com/stefonarch/niri-settings.git /tmp/niri-settings
 cd /tmp/niri-settings
