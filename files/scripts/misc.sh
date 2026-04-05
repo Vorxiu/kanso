@@ -36,7 +36,7 @@ echo ""
 echo "Installation finished."
 rm -rf /tmp/niri-settings
 
-
+cd / 
 # install sddm-noctalia theme
 git clone https://github.com/vorxiu/sddm-noctalia.git /tmp/sddm-noctalia
 sudo cp -r /tmp/sddm-noctalia/* /usr/share/sddm/themes/noctalia/

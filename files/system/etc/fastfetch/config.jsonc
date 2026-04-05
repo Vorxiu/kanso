@@ -3,7 +3,7 @@
     "logo": {
         "source": "/etc/fastfetch/logo.txt",
         "padding": {
-            "top": 1
+            "top": 6
         }
     },
     "modules": [
