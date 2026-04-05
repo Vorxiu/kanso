@@ -73,11 +73,10 @@ modules:
       copr:
         - ublue-os/packages
         - celestelove/app2unit
-        - washkinazy/wayland-wm-extras
         - vorxiu/kanso-packages
       nonfree: rpmfusion
     install:
-      allow-erasing: true
+      allow-erasing: false
       exclude:
         - alacritty
         - waybar
@@ -114,8 +113,6 @@ modules:
         - nautilus
         - noctalia-shell
         - blueman-nautilus
-        - greetd
-        - greetd-selinux
         - nautilus-python
         - NetworkManager-openvpn
         - nm-connection-editor
@@ -129,7 +126,7 @@ modules:
         - qt5-qtwayland
         - qt6ct
         - qt6-qtwayland
-        - regreet
+        - sddm
         - tldr
         - tailscale
         - tuned-ppd
@@ -161,7 +158,7 @@ modules:
     system:
       enabled:
         - podman.socket
-        - greetd.service
+        - sddm.service
         - uupd.timer
         - scx_loader.service
     user:
