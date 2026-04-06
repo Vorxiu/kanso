@@ -37,9 +37,9 @@ echo "Installation finished."
 rm -rf /tmp/niri-settings
 
 cd / 
-# install sddm-noctalia theme
-git clone https://github.com/vorxiu/sddm-noctalia.git /tmp/sddm-noctalia
-sudo mkdir -p /usr/share/sddm/themes/sddm-noctalia
-sudo cp -r /tmp/sddm-noctalia/* /usr/share/sddm/themes/sddm-noctalia/
+
+# install to a writable location
+sudo mkdir -p /etc/sddm/themes/sddm-noctalia
+git clone https://github.com/vorxiu/sddm-noctalia.git /etc/sddm/themes/
 # make the config file writable by noctalia
-sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia/*.conf
+sudo chmod 666 /etc/sddm/themes/sddm-noctalia/*.conf
