@@ -40,7 +40,7 @@ cd /
 
 # install to a writable location
 sudo mkdir -p /etc/sddm/themes/sddm-noctalia
-git --depth=1 clone https://github.com/vorxiu/sddm-noctalia.git /tmp/sddm-noctalia
+git clone https://github.com/vorxiu/sddm-noctalia.git /tmp/sddm-noctalia
 sudo cp -r /tmp/sddm-noctalia /etc/sddm/themes/sddm-noctalia
 # make the config file writable by noctalia
 sudo chmod 666 /etc/sddm/themes/sddm-noctalia/*.conf
