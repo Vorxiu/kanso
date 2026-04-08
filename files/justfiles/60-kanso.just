@@ -5,7 +5,7 @@ install-vscode:
     brew tap ublue-os/tap
     brew install --cask visual-studio-code-linux
     echo "Installing VSCode extensions"
-    code --install-extension ms-vscode-remote.remote-containersa
+    code --install-extension ms-vscode-remote.remote-containers
     code --install-extension ms-vscode-remote.remote-ssh
     code --install-extension ms-azuretools.vscode-containers
     cp -rn /etc/skel/.config/Code/User/settings.json ~/.config/Code/User/settings.json
