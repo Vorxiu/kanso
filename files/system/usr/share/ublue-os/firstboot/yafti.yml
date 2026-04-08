@@ -71,6 +71,7 @@ screens:
             - Fedora Media Writer: org.fedoraproject.MediaWriter
             - Local Send: org.localsend.localsend_app
             - Mission Center (Task Manager): io.missioncenter.MissionCenter
+            - WebApp Manager: org.pvermeer.WebAppHub
         Web Browsers:
           description: Web browsers you can choose from.
           default: false
@@ -176,6 +177,14 @@ screens:
           packages:
             - Enable Auto Login: ujust enable-auto-login
             - Enable noctalia lockscreen on boot: echo "spawn-sh {"qs -c noctalia-shell ipc call lockScreen lock";}" | tee ~/.config/niri/config.kdl
+        Timesync:
+          description: Enables automatic time synchronization via ntp. Recommended to keep your system clock accurate.
+          default: true
+          packages:
+            - Enable Time Sync: timedatectl set-ntp true 
+
+        packages:
+          - Enroll Secure Boot Key: kitty -e ujust enroll-secure-boot-key && notify-send "Secure Boot" "key enrolled! Password kanso — Reboot to enroll key into MOK manager."
         Secure Boot:
           description: Enroll Secure Boot key to make secure boot work.
           default: false
