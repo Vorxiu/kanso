@@ -31,6 +31,7 @@ fix-fonts:
 install-default-configs:
     #!/usr/bin/env bash
     set -euxo pipefail
+    systemctl enable --user --now chezmoi-init.service chezmoi-update.timer
     chezmoi update --no-tty --force
     cp -rn /etc/skel/.config/Code/User/settings.json ~/.config/Code/User/settings.json
 
