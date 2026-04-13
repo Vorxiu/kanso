@@ -97,7 +97,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
-zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
 
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ":fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*" fzf-flags "--preview-window=wrap" "${FZF_TAB_DEFAULT_FZF_FLAGS[@]}"
