@@ -26,7 +26,10 @@ jobs:
       - name: set release date
         run: |
           echo "RELEASE_DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
-      
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Build ISO
         id: build
         uses: ublue-os/titanoboa@main
@@ -34,8 +37,6 @@ jobs:
           image-ref: ghcr.io/vorxiu/kanso
           flatpaks-list: ${{ github.workspace }}/flatpaks/system-flatpaks.list
           hook-post-rootfs: ${{ github.workspace }}/iso_files/configure_iso_anaconda.sh
-          kargs: ""
-          builder-distro: fedora
 
       - name: Rename and Checksum ISO
         run: |
