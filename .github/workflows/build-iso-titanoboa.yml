@@ -1,63 +1,43 @@
-name: build-iso-titanoboa
-on:
-  workflow_dispatch: 
-  schedule:
-    - cron:
-        "00 08 1 * *" # build at 08:00 UTC on the first day of every month
-env:
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+name: Build Custom ISO
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
-  cancel-in-progress: true
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
 
 jobs:
   build-iso:
     name: Build ISO
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
-      contents: write
+      contents: read
       packages: read
-
+    
     steps:
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v9
-
-      - name: set release date
-        run: |
-          echo "RELEASE_DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
-
-      - name: Checkout
-        uses: actions/checkout@v6
-
+        
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - name: Build ISO
         id: build
         uses: ublue-os/titanoboa@main
         with:
-          image-ref: ghcr.io/vorxiu/kanso
-          flatpaks-list: ${{ github.workspace }}/flatpaks/system-flatpaks.list
-          hook-post-rootfs: ${{ github.workspace }}/iso_files/configure_iso_anaconda.sh
-
-      - name: Rename and Checksum ISO
+          image-ref: ghcr.io/vorxiu/kanso:latest
+          flatpaks-list: ${{ github.workspace }}/config/flatpaks.list
+          hook-post-rootfs: ${{ github.workspace }}/config/configure-iso.sh
+          compression: squashfs
+          builder-distro: fedora
+          
+      - name: Rename ISO
         run: |
           mkdir -p output
-          mv ${{ steps.build.outputs.iso-dest }} output/my-custom-image.iso
-          (cd output && sha256sum my-custom-image.iso | tee my-custom-image.iso-CHECKSUM)
-
-      - name: Upload ISO as artifact
-        uses: actions/upload-artifact@v7
+          mv ${{ steps.build.outputs.iso-dest }} output/custom-image-$(date +%Y%m%d).iso
+          (cd output && sha256sum *.iso | tee CHECKSUMS)
+          
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
         with:
-          name: kansoLinux-${{ env.RELEASE_DATE }}-iso
-          path: output/*.iso
-          if-no-files-found: error
-          retention-days: 30
-          archive: false
-
-      - name: Upload checksum as artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: kansoLinux-${{ env.RELEASE_DATE }}-checksum
-          path: output/*-CHECKSUM
-          if-no-files-found: error
-          retention-days: 30
-          archive: false
+          name: custom-iso
+          path: output/

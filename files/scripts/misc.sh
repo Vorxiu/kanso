@@ -4,12 +4,12 @@ set -euo pipefail
 # create /nix mount point (read-only in the image layer)
 mkdir -p /nix
 
-rm /usr/share/applications/btop.desktop
-rm /usr/share/applications/htop.desktop
+rm /usr/share/applications/btop.desktop || true
+rm /usr/share/applications/htop.desktop || true
 
 # remove repos from the image
-rm /etc/yum.repos.d/docker-ce.repo
-rm /etc/yum.repos.d/niri-git-blur.repo
+rm /etc/yum.repos.d/docker-ce.repo || true
+rm /etc/yum.repos.d/niri-git.repo || true
 
 # install niri-settings
 git clone https://github.com/stefonarch/niri-settings.git /tmp/niri-settings
