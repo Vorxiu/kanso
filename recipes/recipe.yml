@@ -187,14 +187,14 @@ modules:
 
   - type: default-flatpaks
     configurations:
-      - notify: false
+      - notify: true
         scope: system
         repo:
           title: Flathub (system)
         install: 
           - com.github.tchx84.Flatseal
-          - io.missioncenter.MissionCenter
           - it.mijorus.gearlever
+          - com.ranfdev.DistroShelf
 
   - type: yafti
 
