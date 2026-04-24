@@ -24,6 +24,13 @@ install-zed:
     set -euxo pipefail
     curl -f https://zed.dev/install.sh | sh
 
+# Installs brave origin using rpm-ostree
+install-brave-origin:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    run0 curl -fsSLo /etc/yum.repos.d/brave-browser-nightly.repo https://brave-browser-rpm-nightly.s3.brave.com/brave-browser-nightly.repo
+    run0 rpm-ostree install brave-origin-nightly
+
 # fix font issues with vscode.
 fix-fonts:
     #!/usr/bin/env bash
