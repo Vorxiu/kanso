@@ -74,6 +74,7 @@ modules:
         - ublue-os/packages
         - celestelove/app2unit
         - vorxiu/kanso-packages
+        - alternateved/keyd
       nonfree: rpmfusion
     install:
       allow-erasing: false
@@ -130,6 +131,7 @@ modules:
         - qt6-qtwayland
         - qt6-qt5compat
         - sddm
+        - keyd
         - setroubleshoot
         - setroubleshoot-server
         - tldr
@@ -165,6 +167,7 @@ modules:
         - uupd.timer
         - scx_loader.service
         - chronyd.service
+        - keyd.service
     user:
       enabled:
         - gnome-keyring-daemon.socket
