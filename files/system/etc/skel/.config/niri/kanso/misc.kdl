@@ -1,0 +1,50 @@
+hotkey-overlay {
+    // skip-at-startup
+    hide-not-bound
+}
+cursor {
+    hide-when-typing
+    hide-after-inactive-ms 30000
+}
+
+// switch-events {
+//     lid-close { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "lock"; }
+// }
+overview {
+    zoom 0.4
+    // Optionally, disable the workspace shadows in the overview.
+    workspace-shadow {
+        on
+    }
+
+}
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+recent-windows {
+    // Round the corners on the highlight.
+    highlight {
+        corner-radius 20
+    }
+    previews {
+        max-height 240
+    }
+}
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
+}
+
+layer-rule {
+  match namespace="kitty-quick-access"
+  opacity 0.9
+    background-effect {
+    xray false
+    }
+}

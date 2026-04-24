@@ -1,0 +1,78 @@
+// Enable blur behind windows.
+window-rule {
+    opacity 0.87
+    background-effect {
+        blur true
+    }
+}
+animations {
+    on
+}
+// Enable blur behind the fuzzel launcher.
+layer-rule {
+    match namespace="^launcher$"
+
+    opacity 0.86
+    background-effect {
+        blur true
+        xray false
+    }
+    shadow {
+      on
+      }
+}
+window-rule {
+    opacity 0.86
+    match is-floating=true
+    background-effect {
+        xray false
+    }
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        inactive-color "#00000100"
+    }
+}
+blur {
+    // off
+    passes 3
+    offset 3
+    noise 0.04
+    saturation 1.6
+}
+
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
+}
+
+layer-rule {
+  match namespace="kitty-quick-access"
+  opacity 0.8
+  shadow {
+    on
+    }
+    background-effect {
+    xray false
+    }
+}
+
+layout {
+    gaps 12
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+}
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}

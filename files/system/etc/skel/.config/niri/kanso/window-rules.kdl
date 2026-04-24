@@ -1,0 +1,93 @@
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+    match namespace="^wallpaper$"
+    match namespace="^quickshell$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^notifications$"
+    block-out-from "screencast"
+}
+
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+window-rule {
+    clip-to-geometry true
+}
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+}
+
+window-rule {
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+
+
+// Open these windows as floating by default
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    match app-id="gsr-ui"
+    match app-id="pavucontrol"
+    match app-id="scrcpy"
+    match app-id="tuned-gui"
+    match title="Calculator"
+    match title="Open Files"
+    match title="Save As"
+    match title="Select a Folder"
+    match title="Save File"
+    match app-id="localsend"
+    match app-id="it.ublue.Yafti"
+    // Firefox/Chrome picture-in-picture
+    match title="^Picture-in-Picture$"
+    match title="Picture in picture"
+    open-floating true
+}
+window-rule {
+    match title="^Picture-in-Picture$"
+    default-floating-position x=32 y=32 relative-to="bottom-left"
+}
+
+window-rule {
+    match is-floating=true
+    min-width 100
+    min-height 100
+}
+window-rule {
+    match title="^btop$"
+    default-column-width { proportion 0.8; }
+}
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    // block-out-from "screen-capture"
+    block-out-from "screencast"
+}
+// turn off blur for maximized window
+// window-rule {
+//     is-maximized true
+//     opacity 1
+//     background-effect {
+//         blur false
+//         xray
+//     }
+// }

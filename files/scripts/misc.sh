@@ -48,21 +48,22 @@ sudo chmod 666 /etc/sddm/themes/sddm-noctalia/theme.conf
 
 rm -rf /tmp/sddm-noctalia
 
-# zsh plugin cache for zinit
-mkdir -p /etc/skel/.local/share/zinit/plugins
-mkdir -p /etc/skel/.local/share/zinit
 
-git clone https://github.com/Aloxaf/fzf-tab.git /etc/skel/.local/share/zinit/plugins/Aloxaf---fzf-tab
-git clone https://github.com/MichaelAquilina/zsh-auto-notify.git /etc/skel/.local/share/zinit/plugins/MichaelAquilina---zsh-auto-notify
-git clone https://github.com/RobSis/zsh-completion-generator.git /etc/skel/.local/share/zinit/plugins/RobSis---zsh-completion-generator
-git clone https://github.com/aubreypwd/zsh-plugin-require.git /etc/skel/.local/share/zinit/plugins/aubreypwd---zsh-plugin-require
-git clone https://github.com/jeffreytse/zsh-vi-mode.git /etc/skel/.local/share/zinit/plugins/jeffreytse---zsh-vi-mode
-git clone https://github.com/marlonrichert/zsh-autocomplete.git /etc/skel/.local/share/zinit/plugins/marlonrichert---zsh-autocomplete
-git clone https://github.com/redxtech/zsh-kitty.git /etc/skel/.local/share/zinit/plugins/redxtech---zsh-kitty
-git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.local/share/zinit/plugins/romkatv---powerlevel10k
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git /etc/skel/.local/share/zinit/plugins/zdharma-continuum---fast-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-completions.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-completions
-git clone https://github.com/zsh-users/zsh-history-substring-search.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-history-substring-search
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-syntax-highlighting
-git clone https://github.com/zdharma-continuum/zinit.git /etc/skel/.local/share/zinit/zinit.git
+# zsh plugin cache for zinit
+# mkdir -p /etc/skel/.local/share/zinit/plugins
+# mkdir -p /etc/skel/.local/share/zinit
+
+# git clone https://github.com/Aloxaf/fzf-tab.git /etc/skel/.local/share/zinit/plugins/Aloxaf---fzf-tab
+# git clone https://github.com/MichaelAquilina/zsh-auto-notify.git /etc/skel/.local/share/zinit/plugins/MichaelAquilina---zsh-auto-notify
+# git clone https://github.com/RobSis/zsh-completion-generator.git /etc/skel/.local/share/zinit/plugins/RobSis---zsh-completion-generator
+# git clone https://github.com/aubreypwd/zsh-plugin-require.git /etc/skel/.local/share/zinit/plugins/aubreypwd---zsh-plugin-require
+# git clone https://github.com/jeffreytse/zsh-vi-mode.git /etc/skel/.local/share/zinit/plugins/jeffreytse---zsh-vi-mode
+# git clone https://github.com/marlonrichert/zsh-autocomplete.git /etc/skel/.local/share/zinit/plugins/marlonrichert---zsh-autocomplete
+# git clone https://github.com/redxtech/zsh-kitty.git /etc/skel/.local/share/zinit/plugins/redxtech---zsh-kitty
+# git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.local/share/zinit/plugins/romkatv---powerlevel10k
+# git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git /etc/skel/.local/share/zinit/plugins/zdharma-continuum---fast-syntax-highlighting
+# git clone https://github.com/zsh-users/zsh-autosuggestions.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-completions.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-completions
+# git clone https://github.com/zsh-users/zsh-history-substring-search.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-history-substring-search
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /etc/skel/.local/share/zinit/plugins/zsh-users---zsh-syntax-highlighting
+# git clone https://github.com/zdharma-continuum/zinit.git /etc/skel/.local/share/zinit/zinit.git
