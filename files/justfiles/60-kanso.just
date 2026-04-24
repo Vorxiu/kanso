@@ -18,6 +18,12 @@ install-jetbrains-toolbox:
     brew tap ublue-os/tap
     brew install --cask jetbrains-toolbox-linux
 
+# install zed editor from the official install script.
+install-zededitor:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    curl -f https://zed.dev/install.sh | sh
+
 # fix font issues with vscode.
 fix-fonts:
     #!/usr/bin/env bash
