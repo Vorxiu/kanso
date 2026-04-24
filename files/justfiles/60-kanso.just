@@ -19,7 +19,7 @@ install-jetbrains-toolbox:
     brew install --cask jetbrains-toolbox-linux
 
 # install zed editor from the official install script.
-install-zededitor:
+install-zed:
     #!/usr/bin/env bash
     set -euxo pipefail
     curl -f https://zed.dev/install.sh | sh
