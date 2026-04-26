@@ -86,13 +86,13 @@ dx-group:
 
     echo "Reboot system and log back in to use docker, libvirt, incus, and serial connections."
 
-# enable auto login for greetd recommended when using luks encryption to avoid having to enter the password twice.
+# enable auto login for sddm recommended when using luks encryption to avoid having to enter the password twice.
 [group('System')]
 enable-auto-login:
     #!/usr/bin/bash
     set -euxo pipefail
     CURRENT_USER="$(id -un)"
-    if ! grep -q '^\[initial_session\]' /etc/greetd/config.toml; then
-        printf '\n[initial_session]\ncommand = "niri-session"\nuser = "%s"\n' "$CURRENT_USER" | pkexec tee -a /etc/greetd/config.toml
-        echo "Auto login enabled for user $CURRENT_USER. Reboot to apply changes."
-    fi
+    AUTLOGIN_CONF="/etc/sddm.conf.d/$(CURRENT_USER)-autologin.conf"
+    pkexec install -d -m 0755 /etc/sddm.conf.d
+    printf '[Autologin]\nUser=%s\nSession=niri.desktop\nRelogin=false\n' "$CURRENT_USER" | pkexec tee "$AUTLOGIN_CONF" > /dev/null
+    echo "SDDM auto login enabled for user $CURRENT_USER. Reboot to apply changes."
