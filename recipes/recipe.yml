@@ -2,15 +2,12 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: kanso
 base-image: ghcr.io/ublue-os/base-main
-description: Atomic distro with the Niri and noctalia shell using bluebuild
+description: Atomic distro with the niri,noctalia,cachyos-kernel shell using bluebuild
 image-version: latest
 
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: /
-
+  - from-file: default.yml
+  
   - type: dnf
     repos:
       copr:
@@ -44,160 +41,7 @@ modules:
           type: file
           destination: /tmp/certs/MOK.key
 
-  - type: brew
-    nofile-limits: true
-    brew-analytics: false
-    # direct-pull: true
-
-  - type: fonts
-    fonts:
-      nerd-fonts:
-        - JetBrainsMono
-
-  - type: gschema-overrides
-    include:
-      - zz-ublue-niri.gschema.override
-
-  - type: justfiles
-    validate: true
-    install: true
-
-  - type: chezmoi
-    repository: "https://github.com/Vorxiu/niri-dots"
-    all-users: true
-    file-conflict-policy: skip
-
-  - type: dnf
-    repos:
-      cleanup: true
-      copr:
-        - ublue-os/packages
-        - celestelove/app2unit
-        - vorxiu/kanso-packages
-        - alternateved/keyd
-      nonfree: rpmfusion
-    install:
-      allow-erasing: false
-      exclude:
-        - alacritty
-        - waybar
-        - mako
-        - swaybg
-        - swaylock
-        - swayidle
-      packages:
-        - app2unit
-        - adw-gtk3-theme
-        - bazaar
-        - btop
-        - bat
-        - bluez-tools
-        - distrobox
-        - eza
-        - fd-find
-        - fzf
-        - firewall-config
-        - fuse-overlayfs
-        - fprintd
-        - fprintd-pam
-        - fastfetch
-        - git
-        - gcr
-        - gnome-keyring
-        - gvfs
-        - gvfs-mtp
-        - gvfs-fuse
-        - gvfs-archive
-        - gvfs-nfs
-        - gvfs-smb
-        - gnome-disk-utility
-        - kitty
-        - nautilus
-        - noctalia-shell
-        - blueman-nautilus
-        - nautilus-python
-        - NetworkManager-openvpn
-        - nm-connection-editor
-        - niri
-        - python3-pyqt6
-        - powertop
-        - nwg-look
-        - mpv
-        - polkit
-        - podman-compose
-        - qt5-qtwayland
-        - qt6ct
-        - qt6-qtwayland
-        - qt6-qt5compat
-        - sddm
-        - keyd
-        - setroubleshoot
-        - setroubleshoot-server
-        - tldr
-        - tailscale
-        - tuned-ppd
-        - ublue-os-just
-        - uupd
-        - wtype
-        - wl-mirror
-        - wlr-randr
-        - wireguard-tools
-        - xdg-desktop-portal-gnome
-        - xdg-desktop-portal-gtk
-        - xwayland-satellite
-        - zoxide
-        - zsh
-        - niri-float-sticky
-        - nautilus-code
-        - xdg-user-dirs # creates default dirs in home like Document Downloads, etc.
-    remove:
-      auto-remove: true
-      packages:
-        - firefox
-        - firefox-langpacks
-        - waybar
-        - nvtop
-
   - type: systemd
     system:
       enabled:
-        - podman.socket
-        - sddm.service
-        - uupd.timer
-        - scx_loader.service
-        - chronyd.service
-        - keyd.service
-    user:
-      enabled:
-        - gnome-keyring-daemon.socket
-        - xdg-user-dirs.service
-      disabled:
-        - waybar.service
-        - mako.service
-
-  - type: os-release
-    properties:
-      ID: Kanso
-      NAME: Kanso Linux
-      PRETTY_NAME: Kanso Linux
-      ID_LIKE: fedora
-      DEFAULT_HOSTNAME: kanso-linux
-
-  - type: script
-    scripts:
-      - misc.sh
-
-  - type: default-flatpaks
-    configurations:
-      - notify: true
-        scope: system
-        repo:
-          title: Flathub (system)
-        install: 
-          - com.github.tchx84.Flatseal
-          - it.mijorus.gearlever
-          - com.ranfdev.DistroShelf
-
-  - type: yafti
-
-  - type: signing
+        - scx_loader.service      

@@ -3,3 +3,4 @@ cosign.private
 /Containerfile
 .vscode/
 MOK.key
+*.sh
