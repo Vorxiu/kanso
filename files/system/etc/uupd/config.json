@@ -2,10 +2,10 @@
   "checks": {
     "hardware": {
       "enable": true,
-      "bat-min-percent":30,
-      "cpu-max-percent": 50,
-      "mem-max-percent": 90,
-      "net-max-bytes": 700000
+      "bat-min-percent": 40,
+      "cpu-max-percent": 60,
+      "mem-max-percent": 80,
+      "net-max-bytes": 400000
     }
   },
   "modules": {
