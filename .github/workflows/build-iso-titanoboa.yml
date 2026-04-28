@@ -37,7 +37,7 @@ jobs:
         with:
           image-ref: ghcr.io/vorxiu/kanso-lts:latest
           # flatpaks-list: ${{ github.workspace }}/config/flatpaks.list
-          # hook-post-rootfs: ${{ github.workspace }}/files/scripts/configure-iso.sh
+          hook-post-rootfs: ${{ github.workspace }}/files/scripts/configure-iso.sh
           builder-distro: fedora
           livesys: false
 
