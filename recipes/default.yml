@@ -11,6 +11,11 @@ modules:
     brew-analytics: false
     # direct-pull: true
 
+  - type: soar
+    additional-repos: true
+    auto-upgrade: true
+    upgrade-interval: '6h'
+  
   - type: fonts
     fonts:
       nerd-fonts:
