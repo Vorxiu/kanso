@@ -89,6 +89,7 @@ modules:
         - python3-pyqt6
         - powertop
         - nwg-look
+        - mission-center
         - mpv
         - polkit
         - podman-compose
