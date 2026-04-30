@@ -87,14 +87,13 @@ modules:
         - NetworkManager-openvpn
         - nm-connection-editor
         - niri
-        - python3-pyqt6
+        - python3-pyqt6 # required for niri-settings
         - powertop
         - nwg-look
         - mission-center
         - mpv
         - polkit
         - podman-compose
-        - qt5-qtwayland
         - qt6ct
         - qt6-qtwayland
         - qt6-qt5compat
@@ -116,8 +115,8 @@ modules:
         - xwayland-satellite
         - zoxide
         - zsh
-        - niri-float-sticky
-        - nautilus-code
+        #- niri-float-sticky
+        #- nautilus-code
         - xdg-user-dirs # creates default dirs in home like Document Downloads, etc.
     remove:
       auto-remove: true
