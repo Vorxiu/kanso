@@ -87,6 +87,7 @@ modules:
         - NetworkManager-openvpn
         - nm-connection-editor
         - niri
+        - nirius
         - python3-pyqt6 # required for niri-settings
         - powertop
         - nwg-look
