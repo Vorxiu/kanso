@@ -138,9 +138,6 @@ modules:
       enabled:
         - gnome-keyring-daemon.socket
         - xdg-user-dirs.service
-      disabled:
-        - waybar.service
-        - mako.service
 
   - type: os-release
     properties:
