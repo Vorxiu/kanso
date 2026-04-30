@@ -116,7 +116,6 @@ modules:
         - xwayland-satellite
         - zoxide
         - zsh
-        #- niri-float-sticky
         #- nautilus-code
         - xdg-user-dirs # creates default dirs in home like Document Downloads, etc.
     remove:

@@ -53,3 +53,15 @@ rm -rf /tmp/sddm-noctalia
 # install phinger cursors
 mkdir -p /usr/share/icons
 wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C /usr/share/icons
+
+
+cd /
+sudo dnf install meson -y
+git clone --depth=1 https://github.com/realmazharhussain/nautilus-code.git /tmp/nautilus-code
+cd /tmp/nautilus-code
+
+meson setup build --prefix=/usr
+meson install -C build
+cd /
+rm -rf /tmp/nautilus-code
+sudo dnf remove meson -y
