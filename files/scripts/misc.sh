@@ -58,12 +58,18 @@ rm -rf /tmp/sddm-noctalia
 mkdir -p /usr/share/icons
 wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C /usr/share/icons
 
+
 # install appimage thumbnailer 
+sudo dnf -y install meson ninja-build squashfs-tools glib2-devel gdk-pixbuf2-devel librsvg2-devel cairo-devel
+sudo dnf -y install curl zlib-devel libzstd-devel xz-devel
+
 cd /
 git clone https://github.com/kem-a/appimage-thumbnailer.git /tmp/appimage-thumbnailer
 cd /tmp/appimage-thumbnailer
 meson setup build
 ninja -C build
 sudo ninja -C build install
-rm -rf /tmp/appimage-thumbnailer
 
+# cleanup
+rm -rf /tmp/appimage-thumbnailer
+sudo dnf -y remove  meson ninja-build squashfs-tools glib2-devel gdk-pixbuf2-devel librsvg2-devel cairo-devel
