@@ -36,6 +36,8 @@ echo ""
 echo "Installation finished."
 rm -rf /tmp/niri-settings
 
+
+# sddm noctalia theme
 cd / 
 
 # install to a writable location
@@ -47,12 +49,6 @@ sudo chmod 666 /etc/sddm/themes/sddm-noctalia/template.conf
 sudo chmod 666 /etc/sddm/themes/sddm-noctalia/theme.conf
 
 rm -rf /tmp/sddm-noctalia
-
-
-# zsh plugin cache for zinit
-# mkdir -p /etc/skel/.local/share/zinit/plugins
-# mkdir -p /etc/skel/.local/share/zinit
-
 
 # install phinger cursors
 mkdir -p /usr/share/icons
