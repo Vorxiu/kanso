@@ -53,6 +53,7 @@ modules:
         - swaylock
         - swayidle
       packages:
+        - https://github.com/kem-a/appimage-thumbnailer/releases/download/v4.0.0/appimage-thumbnailer-v4.0.0-1.x86_64.rpm
         - app2unit
         - adw-gtk3-theme
         - bazaar
