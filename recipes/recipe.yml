@@ -26,7 +26,7 @@ modules:
             new: cachyos-settings
 
   - type: custom-kernel
-    kernel: cachyos-lto
+    kernel: cachyos
     initramfs: true
     source: local
     nvidia: false
