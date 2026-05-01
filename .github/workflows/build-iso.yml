@@ -1,9 +1,8 @@
 name: build-iso
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   schedule:
-    - cron:
-        "00 08 1 * *" # build at 08:00 UTC on the first day of every month
+    - cron: "00 08 1 * *" # build at 08:00 UTC on the first day of every month
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
@@ -30,21 +29,22 @@ jobs:
           echo "RELEASE_DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
       - name: Generate ISO
         run: |
-          sudo bluebuild generate-iso --iso-name kanso.iso image ghcr.io/vorxiu/kanso:latest
+          sudo bluebuild generate-iso --iso-name kanso-latest-${{ env.RELEASE_DATE }}.iso image ghcr.io/vorxiu/kanso:latest
 
       - name: Upload ISO as artifact
         uses: actions/upload-artifact@v7
         with:
-          name: kansoLinux-${{ env.RELEASE_DATE }}-iso
+          name: kanso-latest-${{ env.RELEASE_DATE }}-iso
           path: ./*.iso
           if-no-files-found: error
           retention-days: 60
           archive: false
+          compression-level: 9
 
       - name: Upload checksum as artifact
         uses: actions/upload-artifact@v7
         with:
-          name: kansoLinux-${{ env.RELEASE_DATE }}-checksum
+          name: kanso-latest-${{ env.RELEASE_DATE }}-checksum
           path: ./*-CHECKSUM
           if-no-files-found: error
           retention-days: 60
