@@ -24,6 +24,13 @@ The `latest` tag will automatically point to the latest build.
 
 Currently you can download the ISO from the latest [GitHub Actions workflow run](https://github.com/Vorxiu/kanso/actions/workflows/build-iso.yml).
 
+#### **Downloads are also available on sourceforge**
+
+<a href="https://sourceforge.net/projects/kanso/files/latest/download">
+<img alt="Download from sourceforge" src="https://a.fsdn.com/con/app/sf-download-button">
+</a>
+
+
 ## Verification
 
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
