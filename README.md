@@ -1,11 +1,8 @@
 # Kanso-linux &nbsp; [![bluebuild build badge](https://github.com/vorxiu/ublue-niri/actions/workflows/build.yml/badge.svg)](https://github.com/vorxiu/ublue-niri/actions/workflows/build.yml)
 ![Screenshot 1](Screenshots/1.png)
 
-An opinionated Niri Wayland compositor image with noctalia-shell  built on Universal Blue using bluebuild.
+An opinionated Niri Wayland compositor image with noctalia-shell and Cachyos kernel built on Universal Blue using bluebuild.
 
-- CachyOS kernel
-- dotfiles for niri,noctalia,zsh,etc
-- some nice to haves(Bazaar,niri-settings)
 
 dot files for the image are [here](https://github.com/Vorxiu/niri-dots).
 ## Installation
