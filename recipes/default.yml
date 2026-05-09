@@ -42,6 +42,8 @@ modules:
         - celestelove/app2unit
         - vorxiu/kanso-packages
         - alternateved/keyd
+        - tofik/nwg-shell
+        - tofik/sway
       nonfree: rpmfusion
     install:
       allow-erasing: false
@@ -86,6 +88,7 @@ modules:
         - nautilus-python
         - NetworkManager-openvpn
         - nm-connection-editor
+        - nwg-displays
         - niri
         - nirius
         - python3-pyqt6 # required for niri-settings
