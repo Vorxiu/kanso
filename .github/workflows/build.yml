@@ -31,7 +31,7 @@ jobs:
           - recipe-lts.yml
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Write MOK signing key
         shell: bash
